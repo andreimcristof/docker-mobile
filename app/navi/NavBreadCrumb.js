@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-class Topics extends Component {
+class NavBreadCrumb extends Component {
 
     render() {
         return (
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
     }
 })
 
-module.exports = Topics
+module.exports = NavBreadCrumb

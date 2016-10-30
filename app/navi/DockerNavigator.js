@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Navigator } from 'react-native';
 
-
-//screens
-import ContainersScreen from './ContainersScreen'
-import ContainerScreen from './ContainerScreen'
-import ErrorScreen from './ErrorScreen'
+import ContainerListScene from '../modules/containers/scenes/ContainerListScene'
+import ContainerScene from '../modules/containers/scenes/ContainerScene'
+import ErrorScene from '../shared/scenes/ErrorScene'
 
 
-
-//main
 class DockerNavigator extends Component {
 
     renderScene(route, navigator) {
@@ -22,14 +18,16 @@ class DockerNavigator extends Component {
         }
 
         switch(route.id){
+            case "main":
+                return (<MainScene {...globalNavigatorProps} />);
             case "list":
-                return (<ContainersScreen {...globalNavigatorProps} />);
+                return (<ContainerListScene {...globalNavigatorProps} />);
                 break;
             case "find meaningful ID here":
-                return (<ContainerScreen {...globalNavigatorProps} container={route.id} />);
+                return (<ContainerScene {...globalNavigatorProps} container={route.id} />);
                 break;
             default:
-                return (<ErrorScreen msg={route} />)
+                return (<ErrorScene msg={route} />)
                 break;
         }
     }
