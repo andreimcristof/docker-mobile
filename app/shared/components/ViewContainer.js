@@ -15,6 +15,7 @@ class ViewContainer extends Component {
 const styles = StyleSheet.create({
     viewContainer: {
         flex: 1,
+        marginTop: 20,
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center"

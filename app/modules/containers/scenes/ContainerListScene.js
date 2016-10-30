@@ -3,18 +3,34 @@ import { StyleSheet, Text, ListView } from 'react-native';
 import ViewContainer from '../../../shared/components/ViewContainer'
 
 class ContainerListScene extends Component {
-  render() {
-    return (
-        <ViewContainer>
-            <Text style={styles.header}>
-                Running Containers:
-            </Text>
-            <ListView>
+    constructor(props){
+        super(props);
+        var self = this;
+        self.state = {
+            loading: true
+        };
+        self.containers = {
+            dataSource: []
+        };
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        self.containers.dataSource = ds.cloneWithRows([])
+            }
 
-            </ListView>
-        </ViewContainer>
+    render() {
+        if(this.state.loading) {return (<ViewContainer><Text>loading...</Text></ViewContainer>)}
+
+        return (
+            <ViewContainer>
+                <Text style={styles.header}>
+                    Running Containers:
+                </Text>
+                <ListView
+                  dataSource={this.containers.dataSource}
+                  renderRow={(item) => <Text>{item.Id}</Text>}
+                />
+            </ViewContainer>
     );
-  }
+    }
 }
 
 module.exports = ContainerListScene
