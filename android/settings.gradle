@@ -1,0 +1,3 @@
+rootProject.name = 'dockermobile'
+
+include ':app'
