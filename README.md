@@ -9,14 +9,13 @@ This is, first and foremost, a learning project that touches multiple issues - b
 
 ## Please note: 
 1. Since this is a "learn-as-you-go" project, things might not always run as you expect, sky might not always be blue. 
-2. Contributions are welcome, however regarding feature requests: this project is oriented not towards getting the app out there fast, but on much slower steps insisting on proper unit testing of all features. 
-
-
+2. Contributions are welcome, however regarding feature requests: this project is oriented not towards getting the app out there fast, but on much slower steps insisting on proper unit testing of all features. The main goal is to obtain 100% unit testing coverage, and maintain it as the app grows. 
 
 
 # Install on device
 `react-native run-android`  
 `react-native run-ios`
+
 
 # Sync added packages
 `react-native link`
