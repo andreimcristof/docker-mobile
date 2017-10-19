@@ -1,23 +1,31 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { DockerService } from './docker.service.js';
 
 export default class DockerContainer extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      dockerver : ''
+    };
+
+    this.dockerService = new DockerService();
+  }
+
   render() {
+    this.dockerService.getDockerVersionAsync().then(res => {
+      this.setState({dockerver: res.Version});
+    });
     return (
-      <View style={styles.DockerContainer}>
-        <Text>docker version is { this.t }</Text>
+      <View style={styles.DockerInfoContainer}>
+        <Text>local docker version is: {this.state.dockerver}</Text>
       </View>
     );
   }
 }
-let t;
-fetch("--unix-socket /var/run/docker.sock http:/v1.24/version?stdout=1").then(response => {
-t = response.status;
-})
-.catch(err =>  {console.error(err)})
 
 const styles = StyleSheet.create({
-  DockerContainer: {
+  DockerInfoContainer: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
