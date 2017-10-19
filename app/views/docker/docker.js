@@ -6,19 +6,30 @@ export default class DockerContainer extends React.Component {
   constructor(){
     super();
     this.state = {
-      dockerver : ''
+      dockerInfo : { }
     };
 
     this.dockerService = new DockerService();
   }
 
+  componentDidMount(){
+    this.dockerService.getDockerVersionAsync()
+    .then(res => {
+      this.setState({dockerInfo: res});
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
   render() {
-    this.dockerService.getDockerVersionAsync().then(res => {
-      this.setState({dockerver: res.Version});
-    });
     return (
       <View style={styles.DockerInfoContainer}>
-        <Text>local docker version is: {this.state.dockerver}</Text>
+        <Text>Local Docker Engine found</Text>
+         <Text>Version: {this.state.dockerInfo.Version}</Text>
+         <Text>ApiVersion: {this.state.dockerInfo.ApiVersion}</Text>
+         <Text>KernelVersion: {this.state.dockerInfo.KernelVersion}</Text>
+         <Text>Os: {this.state.dockerInfo.Os}</Text>
       </View>
     );
   }
